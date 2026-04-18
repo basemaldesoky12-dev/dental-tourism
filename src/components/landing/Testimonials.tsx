@@ -1,4 +1,7 @@
+"use client";
+
 import { Star, Quote } from "lucide-react";
+import { useInView } from "@/hooks/useInView";
 
 interface Testimonial {
   text: string;
@@ -25,20 +28,25 @@ const testimonials: Testimonial[] = [
 ];
 
 export default function Testimonials() {
+  const { ref, isVisible } = useInView();
+
   return (
-    <section id="testimonials" className="bg-white py-20">
+    <section id="testimonials" className="bg-white py-20" ref={ref}>
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-12">
+        <div
+          className={`text-center mb-12 ${isVisible ? "animate-fade-up" : "anim-hidden"}`}
+        >
           <h2 className="font-[var(--font-heading)] text-3xl md:text-[38px] text-charcoal">
             Real Stories From Real Patients
           </h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {testimonials.map((testimonial) => (
+          {testimonials.map((testimonial, i) => (
             <div
               key={testimonial.name}
-              className="bg-white border border-light-warm rounded-xl p-6"
+              className={`bg-white border border-light-warm rounded-xl p-6 hover:shadow-lg transition-all duration-300 ${isVisible ? "animate-fade-up" : "anim-hidden"}`}
+              style={{ animationDelay: `${200 + i * 150}ms` }}
             >
               <Quote className="w-8 h-8 text-teal mb-4" />
 
@@ -47,18 +55,15 @@ export default function Testimonials() {
               </p>
 
               <div className="flex gap-0.5 mb-3">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star
-                    key={i}
-                    className="w-4 h-4 fill-teal text-teal"
-                  />
+                {Array.from({ length: 5 }).map((_, j) => (
+                  <Star key={j} className="w-4 h-4 fill-teal text-teal" />
                 ))}
               </div>
 
-              <p className="font-semibold text-charcoal">
-                {testimonial.name}
+              <p className="font-semibold text-charcoal">{testimonial.name}</p>
+              <p className="text-sm text-stone-gray">
+                {testimonial.procedure}
               </p>
-              <p className="text-sm text-stone-gray">{testimonial.procedure}</p>
             </div>
           ))}
         </div>

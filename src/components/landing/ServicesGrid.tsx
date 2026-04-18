@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import {
   Blocks,
@@ -8,6 +10,7 @@ import {
   Stethoscope,
   type LucideIcon,
 } from "lucide-react";
+import { useInView } from "@/hooks/useInView";
 
 interface Service {
   icon: LucideIcon;
@@ -62,10 +65,14 @@ const services: Service[] = [
 ];
 
 export default function ServicesGrid() {
+  const { ref, isVisible } = useInView();
+
   return (
-    <section id="services" className="bg-white py-20">
+    <section id="services" className="bg-white py-20" ref={ref}>
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-12">
+        <div
+          className={`text-center mb-12 ${isVisible ? "animate-fade-up" : "anim-hidden"}`}
+        >
           <p className="text-teal uppercase tracking-[3px] text-xs font-bold mb-3">
             OUR SERVICES
           </p>
@@ -75,14 +82,17 @@ export default function ServicesGrid() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service) => {
+          {services.map((service, i) => {
             const Icon = service.icon;
             return (
               <div
                 key={service.title}
-                className="bg-white border border-light-warm rounded-xl p-6 hover:shadow-lg hover:-translate-y-0.5 transition-all"
+                className={`bg-white border border-light-warm rounded-xl p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 ${isVisible ? "animate-fade-up" : "anim-hidden"}`}
+                style={{ animationDelay: `${150 + i * 100}ms` }}
               >
-                <Icon className="w-8 h-8 text-teal mb-4" />
+                <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-4" style={{ background: "rgba(13,115,119,0.1)" }}>
+                  <Icon className="w-6 h-6 text-teal" />
+                </div>
                 <h3 className="font-semibold text-lg text-charcoal mb-2">
                   {service.title}
                 </h3>

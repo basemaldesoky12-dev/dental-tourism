@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { FileText, FileCheck, CreditCard, Plane } from "lucide-react";
+import { useInView } from "@/hooks/useInView";
 
 const steps = [
   {
@@ -33,10 +36,14 @@ const steps = [
 ];
 
 export default function HowItWorks() {
+  const { ref, isVisible } = useInView();
+
   return (
-    <section id="how-it-works" className="bg-sand py-20">
+    <section id="how-it-works" className="bg-sand py-20" ref={ref}>
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-14">
+        <div
+          className={`text-center mb-14 ${isVisible ? "animate-fade-up" : "anim-hidden"}`}
+        >
           <h2 className="font-[var(--font-heading)] text-3xl md:text-[38px] text-charcoal">
             Your Journey in 4 Simple Steps
           </h2>
@@ -46,14 +53,27 @@ export default function HowItWorks() {
           {steps.map((step, index) => {
             const Icon = step.icon;
             return (
-              <div key={step.number} className="relative text-center">
+              <div
+                key={step.number}
+                className={`relative text-center ${isVisible ? "animate-fade-up" : "anim-hidden"}`}
+                style={{ animationDelay: `${200 + index * 150}ms` }}
+              >
                 {/* Connecting line (visible on md+) */}
                 {index < steps.length - 1 && (
-                  <div className="hidden md:block absolute top-6 left-[calc(50%+24px)] w-[calc(100%-48px)] border-t-2 border-dashed border-teal/30" />
+                  <div
+                    className={`hidden md:block absolute top-6 left-[calc(50%+24px)] w-[calc(100%-48px)] border-t-2 border-dashed transition-all duration-1000 ${isVisible ? "opacity-100" : "opacity-0"}`}
+                    style={{
+                      borderColor: "rgba(13,115,119,0.3)",
+                      transitionDelay: `${400 + index * 200}ms`,
+                    }}
+                  />
                 )}
 
                 <div className="flex justify-center mb-4">
-                  <div className="w-12 h-12 rounded-full bg-teal text-white flex items-center justify-center font-bold text-lg relative z-10">
+                  <div
+                    className={`w-12 h-12 rounded-full bg-teal text-white flex items-center justify-center font-bold text-lg relative z-10 ${isVisible ? "animate-scale-in" : "anim-hidden"}`}
+                    style={{ animationDelay: `${300 + index * 150}ms` }}
+                  >
                     {step.number}
                   </div>
                 </div>
@@ -71,10 +91,12 @@ export default function HowItWorks() {
           })}
         </div>
 
-        <div className="text-center">
+        <div
+          className={`text-center ${isVisible ? "animate-fade-up delay-700" : "anim-hidden"}`}
+        >
           <Link
             href="/inquiry"
-            className="inline-block bg-coral text-white font-semibold px-8 py-3 rounded-lg hover:opacity-90 transition-opacity"
+            className="inline-block bg-coral text-white font-semibold px-8 py-3 rounded-lg hover:opacity-90 hover:scale-105 transition-all duration-200"
           >
             Start Your Journey
           </Link>

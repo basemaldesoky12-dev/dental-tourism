@@ -1,4 +1,7 @@
+"use client";
+
 import { Star, MapPin } from "lucide-react";
+import { useInView } from "@/hooks/useInView";
 
 interface Hotel {
   name: string;
@@ -33,10 +36,14 @@ const hotels: Hotel[] = [
 ];
 
 export default function Accommodation() {
+  const { ref, isVisible } = useInView();
+
   return (
-    <section id="accommodation" className="bg-sand py-20">
+    <section id="accommodation" className="bg-sand py-20" ref={ref}>
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-12">
+        <div
+          className={`text-center mb-12 ${isVisible ? "animate-fade-up" : "anim-hidden"}`}
+        >
           <p className="text-teal uppercase tracking-[3px] text-xs font-bold mb-3">
             STAY IN COMFORT
           </p>
@@ -46,25 +53,28 @@ export default function Accommodation() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {hotels.map((hotel) => (
+          {hotels.map((hotel, i) => (
             <div
               key={hotel.name}
-              className="rounded-xl overflow-hidden border border-light-warm bg-white"
+              className={`rounded-xl overflow-hidden border border-light-warm bg-white hover:shadow-lg hover:-translate-y-1 transition-all duration-300 ${isVisible ? "animate-fade-up" : "anim-hidden"}`}
+              style={{ animationDelay: `${200 + i * 150}ms` }}
             >
-              <img
-                src={hotel.image}
-                alt={hotel.name}
-                className="w-full h-48 object-cover"
-              />
+              <div className="overflow-hidden">
+                <img
+                  src={hotel.image}
+                  alt={hotel.name}
+                  className="w-full h-48 object-cover hover:scale-105 transition-transform duration-500"
+                />
+              </div>
               <div className="p-6">
                 <h3 className="font-semibold text-lg text-charcoal mb-2">
                   {hotel.name}
                 </h3>
 
                 <div className="flex gap-0.5 mb-2">
-                  {Array.from({ length: hotel.stars }).map((_, i) => (
+                  {Array.from({ length: hotel.stars }).map((_, j) => (
                     <Star
-                      key={i}
+                      key={j}
                       className="w-4 h-4 fill-amber-400 text-amber-400"
                     />
                   ))}
