@@ -8,7 +8,6 @@ const trustItems = [
   { icon: Users, label: "500+ Happy Patients" },
   { icon: TrendingDown, label: "70% Average Savings" },
   { icon: Package, label: "All-Inclusive Packages" },
-  { icon: Shield, label: "Australian-Owned" },
 ];
 
 export default function Hero() {
