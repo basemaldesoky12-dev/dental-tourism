@@ -18,7 +18,6 @@ const accommodationOptions = [
 ];
 
 const trustPoints = [
-  "Australian-owned and operated",
   "Vetted, internationally accredited clinics",
   "All-inclusive packages — no hidden fees",
   "Dedicated concierge from inquiry to aftercare",

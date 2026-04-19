@@ -56,8 +56,7 @@ export default function Hero() {
             className={`text-lg mb-8 max-w-md ${loaded ? "animate-fade-up delay-400" : "anim-hidden"}`}
             style={{ color: "rgba(255,255,255,0.8)" }}
           >
-            Premium dental packages in Egypt, personally arranged by
-            Australians for Australians.
+            Premium dental packages in Egypt, personally arranged and tailored to your needs.
           </p>
 
           <div
