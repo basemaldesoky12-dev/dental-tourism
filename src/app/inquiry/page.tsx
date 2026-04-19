@@ -4,14 +4,10 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { CheckCircle, Phone, Mail, MessageCircle } from "lucide-react";
 
-const services = [
-  "Dental Implants",
-  "Porcelain Veneers",
-  "Crowns & Bridges",
-  "Teeth Whitening",
-  "Full Mouth Rehab",
-  "General Check-up",
-  "Other",
+const serviceTypes = [
+  "Dental Services",
+  "Cosmetic Services",
+  "Dental & Cosmetic Services",
 ];
 
 const accommodationOptions = [
@@ -19,15 +15,6 @@ const accommodationOptions = [
   "Motel/Budget",
   "Apartment",
   "No Accommodation Needed",
-];
-
-const budgetOptions = [
-  "Under $5,000",
-  "$5,000-$10,000",
-  "$10,000-$20,000",
-  "$20,000-$50,000",
-  "$50,000+",
-  "Not Sure",
 ];
 
 const trustPoints = [
@@ -54,8 +41,7 @@ export default function InquiryPage() {
             Tell Us About Your Dental Needs
           </h1>
           <p className="mt-2 text-stone-gray text-lg max-w-2xl">
-            Fill out the form below and our concierge team will prepare a
-            personalised quote within 24 hours.
+            Fill out the form below and our team will schedule a meeting to discuss your needs and provide you with a quotation.
           </p>
         </div>
       </section>
@@ -116,22 +102,23 @@ export default function InquiryPage() {
                     </div>
                   </div>
 
-                  {/* Services Needed */}
+                  {/* Service Types */}
                   <div className="mt-6">
                     <label className="text-sm font-medium text-charcoal mb-1.5 block">
                       Services Needed
                     </label>
-                    <div className="grid grid-cols-2 gap-2">
-                      {services.map((s) => (
+                    <div className="flex flex-col gap-2">
+                      {serviceTypes.map((type) => (
                         <label
-                          key={s}
+                          key={type}
                           className="flex items-center gap-2 text-sm text-charcoal cursor-pointer"
                         >
                           <input
-                            type="checkbox"
-                            className="w-4 h-4 rounded border-light-warm text-teal focus:ring-teal"
+                            type="radio"
+                            name="serviceType"
+                            className="w-4 h-4 text-teal focus:ring-teal"
                           />
-                          {s}
+                          {type}
                         </label>
                       ))}
                     </div>
@@ -159,19 +146,27 @@ export default function InquiryPage() {
                     </div>
                   </div>
 
-                  {/* Budget Range */}
+                  {/* Travel Add-ons (Flights & Companion) */}
                   <div className="mt-6">
                     <label className="text-sm font-medium text-charcoal mb-1.5 block">
-                      Budget Range
+                      Travel Add-ons
                     </label>
-                    <select className="w-full h-12 border border-light-warm rounded-lg px-4 focus:outline-none focus:ring-2 focus:ring-teal bg-white text-charcoal">
-                      <option value="">Select a range...</option>
-                      {budgetOptions.map((b) => (
-                        <option key={b} value={b}>
-                          {b}
-                        </option>
-                      ))}
-                    </select>
+                    <div className="flex flex-col gap-2">
+                      <label className="flex items-center gap-2 text-sm text-charcoal cursor-pointer">
+                        <input
+                          type="checkbox"
+                          className="w-4 h-4 rounded border-light-warm text-teal focus:ring-teal"
+                        />
+                        Flight Included
+                      </label>
+                      <label className="flex items-center gap-2 text-sm text-charcoal cursor-pointer">
+                        <input
+                          type="checkbox"
+                          className="w-4 h-4 rounded border-light-warm text-teal focus:ring-teal"
+                        />
+                        Medical Travel Companion Required
+                      </label>
+                    </div>
                   </div>
 
                   {/* Tell Us More */}
