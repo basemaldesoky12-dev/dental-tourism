@@ -1,7 +1,6 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Hero from "@/components/landing/Hero";
-import ServicesGrid from "@/components/landing/ServicesGrid";
 import HowItWorks from "@/components/landing/HowItWorks";
 import SavingsComparison from "@/components/landing/SavingsComparison";
 import Accommodation from "@/components/landing/Accommodation";
@@ -13,7 +12,6 @@ export default function Home() {
     <>
       <Navbar />
       <Hero />
-      <ServicesGrid />
       <HowItWorks />
       <SavingsComparison />
       <Accommodation />
