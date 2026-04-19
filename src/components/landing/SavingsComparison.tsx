@@ -5,27 +5,21 @@ import { useInView } from "@/hooks/useInView";
 const comparisons = [
   {
     procedure: "Single Implant",
-    australianPrice: "$5,500",
-    packagePrice: "$1,800",
-    savings: "67%",
+    australianPrice: "$2,100",
+    packagePrice: "$340",
+    savings: "83%",
   },
   {
-    procedure: "Porcelain Veneer",
-    australianPrice: "$2,000",
-    packagePrice: "$600",
-    savings: "70%",
+    procedure: "Veneer",
+    australianPrice: "$700",
+    packagePrice: "$160",
+    savings: "77%",
   },
   {
-    procedure: "Zirconia Crown",
-    australianPrice: "$2,200",
-    packagePrice: "$700",
-    savings: "68%",
-  },
-  {
-    procedure: "Full Mouth Rehab",
-    australianPrice: "$45,000",
-    packagePrice: "$13,000",
-    savings: "71%",
+    procedure: "Endo + Crown",
+    australianPrice: "$1,600",
+    packagePrice: "$300",
+    savings: "81%",
   },
 ];
 
